@@ -66,7 +66,7 @@ static NSString *VK_AUTHORIZE_URL_STRING = @"vkauthorize://authorize";
     if(![VKSdk isLoggedIn]) {
         [self vkLoginWithPermissions:permissions andBlock:^(NSString *token, NSString *error) {
             if(token) {
-                VKRequest *req = [VKRequest requestWithMethod:@"users.get" parameters:@{@"fields": @"id, domain, crop_photo, first_name, last_name, sex, bdate, timezone, photo, photo_big, city, country"}];
+                VKRequest *req = [VKRequest requestWithMethod:@"users.get" parameters:@{@"fields": @"id, domain, photo_100, first_name, last_name, sex, bdate, timezone, photo, photo_big, city, country"}];
                 [req executeWithResultBlock:^(VKResponse *response) {
                     NSLog(@"User response %@", response);
                     
@@ -94,7 +94,7 @@ static NSString *VK_AUTHORIZE_URL_STRING = @"vkauthorize://authorize";
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         } else {
             VKAccessToken *token = [VKSdk accessToken];
-            VKRequest *req = [VKRequest requestWithMethod:@"users.get" parameters:@{@"fields": @"sex,bdate,city,country,screen_name,photo_50,photo_200_orig,domain, crop_photo"}];
+            VKRequest *req = [VKRequest requestWithMethod:@"users.get" parameters:@{@"fields": @"sex,bdate,city,country,screen_name,photo_50,photo_200_orig,domain, photo_100"}];
             [req executeWithResultBlock:^(VKResponse *response) {
                 NSLog(@"User response %@", response);
                 CDVPluginResult* pluginResult = nil;
